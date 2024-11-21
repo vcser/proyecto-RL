@@ -12,7 +12,7 @@ from dqn import DQN  # Asegúrate de tener la clase DQN en otro archivo, por eje
 from trpo import PolicyNetwork, ValueNetwork
 
 def preprocess_observation(obs):
-    resized = cv2.resize((84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(obs, (84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 def select_action(state, policy_net):
