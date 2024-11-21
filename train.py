@@ -59,8 +59,7 @@ class ReplayMemory:
 
 
 def preprocess_observation(obs):
-    gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-    resized = cv2.resize(gray, (84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize((84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 

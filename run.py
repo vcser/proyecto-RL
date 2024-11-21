@@ -10,8 +10,7 @@ gym.register_envs(ale_py)
 from dqn import DQN  # Asegúrate de tener la clase DQN en otro archivo, por ejemplo, dqn_model.py
 
 def preprocess_observation(obs):
-    gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-    resized = cv2.resize(gray, (84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize((84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 def select_action(state, policy_net):
