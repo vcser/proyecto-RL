@@ -17,8 +17,7 @@ env = gym.make("ALE/MsPacman-v5", render_mode='rgb_array', frameskip=4)
 
 
 def preprocess_observation(obs):
-    gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-    resized = cv2.resize(gray, (84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(obs, (84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 
@@ -241,7 +240,7 @@ def random_agent(env, num_episodes=10):
 
 
 # Crear el agente y entrenarlo
-input_shape = (1, 84, 84)
+input_shape = (3, 84, 84)
 num_actions = env.action_space.n
 ppo_agent = PPOAgent(input_shape, num_actions)
 

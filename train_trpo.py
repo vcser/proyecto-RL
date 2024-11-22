@@ -49,8 +49,7 @@ class ValueNetwork(nn.Module):
         return self.network(x)
 
 def preprocess_observation(obs):
-    gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-    resized = cv2.resize(gray, (84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(obs, (84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 def kl_divergence(old_action_probs, new_action_probs):
@@ -178,7 +177,7 @@ if __name__ == "__main__":
     env = gym.make("ALE/MsPacman-v5", frameskip=4)
 
     # Initialize policy and value networks
-    input_shape = (1, 84, 84)
+    input_shape = (3, 84, 84)
     policy_net = PolicyNetwork(input_shape, env.action_space.n)
     value_net = ValueNetwork(input_shape)
 
