@@ -81,13 +81,13 @@ if __name__ == "__main__":
 
     if use_dqn:
         # Crear la red neuronal y cargar los pesos entrenados
-        policy_net = DQN((1, 84, 84), env.action_space.n)  # Ajusta los parámetros si es necesario
+        policy_net = DQN((3, 84, 84), env.action_space.n)  # Ajusta los parámetros si es necesario
         policy_net.load_state_dict(torch.load("pacman_dqn_final.pth"))
         policy_net.eval()
         
         play_game(env, policy_net)
     else:
-        policy_net = PolicyNetwork((1, 84, 84), env.action_space.n)
+        policy_net = PolicyNetwork((3, 84, 84), env.action_space.n)
         policy_net.load_state_dict(torch.load("policy_net_trpo_final.pth"))
         policy_net.eval()
         

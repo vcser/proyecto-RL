@@ -59,7 +59,7 @@ class ReplayMemory:
 
 
 def preprocess_observation(obs):
-    resized = cv2.resize((84, 84), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(obs, (84, 84), interpolation=cv2.INTER_AREA)
     return np.expand_dims(resized, axis=0) / 255.0
 
 
@@ -140,10 +140,10 @@ def train(env, policy_net, target_net, memory, optimizer, num_episodes):
     torch.save(policy_net.state_dict(), "pacman_dqn_final.pth")
 
 
-policy_net = DQN((1, 84, 84), env.action_space.n)
+policy_net = DQN((3, 84, 84), env.action_space.n)
 policy_net.load_state_dict(torch.load("pacman_dqn_final.pth"))
 policy_net.eval()
-target_net = DQN((1, 84, 84), env.action_space.n)
+target_net = DQN((3, 84, 84), env.action_space.n)
 target_net.load_state_dict(policy_net.state_dict())
 
 optimizer = optim.Adam(policy_net.parameters(), lr=LEARNING_RATE)
